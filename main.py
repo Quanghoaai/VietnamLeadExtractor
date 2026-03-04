@@ -11,7 +11,7 @@ logger = get_logger(__name__)
 @click.option('--keyword', required=True, help="Từ khóa tìm kiếm (VD: 'nhà hàng').")
 @click.option('--province', default="", help="Tỉnh/Thành phố/Vị trí (VD: 'Hà Nội').")
 @click.option('--max', 'max_results', default=100, type=int, help="Số kết quả tối đa (Default: 100).", show_default=True)
-@click.option('--output', type=click.Choice(['csv', 'json']), default='csv', help="Định dạng xuất file.", show_default=True)
+@click.option('--output', type=click.Choice(['csv', 'json', 'excel']), default='csv', help="Định dạng xuất file.", show_default=True)
 def cli(keyword: str, province: str, max_results: int, output: str):
     """
     VietnamLeadExtractor
@@ -38,11 +38,15 @@ def cli(keyword: str, province: str, max_results: int, output: str):
     
     # 4. Xuất file kết quả
     filename_part = f"{province or 'all'}_{keyword.replace(' ', '_')}".lower()
-    filename = f"leads_{filename_part}.{output}"
     
     if output == 'csv':
+        filename = f"leads_{filename_part}.csv"
         df_classified.to_csv(filename, index=False, encoding='utf-8-sig') # Định dạng utf-8-sig tương thích tốt với Excel
+    elif output == 'excel':
+        filename = f"leads_{filename_part}.xlsx"
+        df_classified.to_excel(filename, index=False, engine='openpyxl')
     else:
+        filename = f"leads_{filename_part}.json"
         df_classified.to_json(filename, orient='records', force_ascii=False, indent=4)
         
     logger.info(f" Hoàn thành! File đã được lưu tại: {filename}")

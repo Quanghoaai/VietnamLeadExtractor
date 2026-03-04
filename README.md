@@ -1,89 +1,103 @@
-# 🇻🇳 VietnamLeadExtractor (VLE)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-**VietnamLeadExtractor** là siêu công cụ CLI mã nguồn mở (MIT) giúp bạn tự động trích xuất hàng ngàn leads B2B từ Google Maps và dùng trí tuệ nhân tạo (Hugging Face Zero-shot AI) để tự động phân loại, chấm điểm lead (High/Medium/Low Quality) dành riêng cho developer, freelancer, agency và startup Việt Nam.
-
-> *Món quà này dành cho cộng đồng Builder Việt - những người chuyên xây dựng hệ thống tự động để tăng trưởng.*
+<div align="center">
+  <img src="https://img.icons8.com/color/120/000000/google-maps-new.png"/>
+  <h1>🚀 VietnamLeadExtractor (B2B Leads x AI)</h1>
+  <p><strong>Bóc tách & Thẩm định Dữ liệu Khách hàng B2B Doanh nghiệp tại Việt Nam bằng Trí tuệ Nhân tạo</strong></p>
+  
+  <p>
+    <a href="https://github.com/Quanghoaai/VietnamLeadExtractor/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" />
+    </a>
+    <a href="https://python.org">
+      <img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg" alt="Python 3.10+" />
+    </a>
+    <img src="https://img.shields.io/badge/AI-Hugging_Face-orange.svg" alt="Hugging Face LLM" />
+    <img src="https://img.shields.io/badge/LLM-Gemini_2.5_Flash-purple.svg" alt="Gemini 2.5 Flash" />
+  </p>
+</div>
 
 ---
 
-## 🍵 Chưng Cất Kiến Thức (Governance + AI Tăng Tốc)
+## 🎯 Giới thiệu Dự án
 
-> **"Không có governance thì chạy nhanh đến mấy cũng lao xuống vực"** - *Phong cách TinySDLC*
+**VietnamLeadExtractor** không chỉ là một công cụ cào dữ liệu thông thường. Đây là một **Agent tự động** (Autonomous Agent) thiết kế chuyên biệt cho giới Developer, Freelancer, Agency, và Startup Việt Nam. Công cụ giúp bạn khai thác chính xác 100% Leads của các doanh nghiệp thực có mặt trên bản đồ, đồng thời gắn kèm _"Bộ Não AI"_ để phân tích tiềm năng của họ.
 
-Dự án này được thiết kế theo tư duy **TinySDLC**:
-- **Tiny Governance**: Code tuân thủ PEP8 100%, có type hints (`typing`), sử dụng Docstring Google Style rõ ràng. Chúng tôi không in log một cách vô tội vạ bằng `print`, tất cả dùng custom `logger`.
-- **Tiny Architecture**: Tách bạch logic ra 3 class chính: `Scraper` (Giao tiếp API), `Processor` (Xử lý dữ liệu Pandas), `Classifier` (Hugging Face AI). Rất dễ để bạn vào đóng góp tiếp.
-- **AI Tăng Tốc**: Bạn cào ngàn leads nhưng chỉ 100 leads tiềm năng? Hệ thống sử dụng *Zero-shot Classification* để tự chấm điểm dựa vào ngôn ngữ, rating và hạng mục của doanh nghiệp, giúp bạn chắt lọc leads xịn nhất ngay từ đầu.
-- **Localisation**: Tiếng Việt được ưu tiên! Lưu `.csv` chuẩn utf-8-sig để khách hàng mở Excel không bị lỗi phông chữ.
+> 💡 **"Nhỏ nhưng dùng được"** – Bạn không cần máy tính siêu khủng, không cần đăng nhập lằng nhằng. Mọi thứ vận hành ngầm 100% (Headless) và cực kỳ bảo mật tại máy Local của bạn!
 
-## 🎯 Use Cases Tại Việt Nam
+### 🔥 Tính năng "Ngầu" Nhất (Killer Features)
+- **⚡ Local API Fast-Track**: Cào trực tiếp thông qua API với tốc độ xé gió. Tự động deduplicate (khử trùng lặp) thông minh.
+- **🤖 Tích hợp Trí tuệ Nhân tạo Kép**:
+  - **Local AI (MiniLM)**: Sử dụng Hugging Face NLP (Zero-shot classification) siêu nhẹ, chạy hoàn toàn offline bằng CPU của bạn để _chấm điểm khách hàng_ (Chất lượng Cao / Trung bình / Thấp) dựa trên sức ảnh hưởng của doanh nghiệp đó.
+  - **Auto Fallback to Gemini 2.5 Flash**: Nếu Google Maps API Key của bạn bị chặn, hệ thống tự động bẻ lái sang dùng Generative AI của Gemini ngầm ở phía dưới để tổng hợp danh sách Data trả về cho bạn. Cực kỳ bá đạo!
+- **🌐 Xuất File Đa Định Dạng**: Hỗ trợ nén data chuẩn xác ra **CSV**, **JSON**, và nay tích hợp cả **Excel (.XLSX)** để ném thẳng vào Zoho, Bitrix24 hay Hubspot.
 
-- **B2B Tech Startup**: "Tìm tất cả các 'bệnh viện' tại 'Hà Nội' để sale phần mềm quản lý y tế".
-- **F&B Agency**: "Lọc các 'nhà hàng' có đánh giá dưới 3 sao tại 'TP.HCM' để chào gói setup lại thương hiệu".
-- **Sản Xuất / Phân Phối**: "Săn các 'xưởng mộc' tại 'Bình Dương' để gửi mẫu gỗ/báo giá".
+---
 
-## 🚀 Hướng Dẫn Sử Dụng (Dành cho người mới)
-
-Dự án này được thiết kế theo đúng triết lý "Nhỏ nhưng dùng được", chạy hoàn toàn trên máy cá nhân cục bộ (Local) của bạn. Hệ thống hoạt động như một Trợ lý AI tự động để quét, phân tích và lọc leads B2B từ bản đồ.
+## 🛠 Hướng Dẫn Sử Dụng (Dành cho người mới)
 
 ### 1. Chuẩn Bị Môi Trường
 Đảm bảo máy tính của bạn đã cài đặt Python 3.10 trở lên.
 
 Mở Terminal (Command Prompt hoặc PowerShell) và chạy các dòng lệnh sau để tải dự án về máy:
+
 ```bash
-git clone https://github.com/your-username/VietnamLeadExtractor.git
+git clone https://github.com/Quanghoaai/VietnamLeadExtractor.git
 cd VietnamLeadExtractor
 ```
 
-Tạo một môi trường ảo (Virtual Environment) để cài đặt các thư viện không bị xung đột với hệ thống:
+Tạo một môi trường ảo (Virtual Environment) để cài đặt các thư viện siêu sạch:
+
 ```bash
 python -m venv venv
 ```
 
-Kích hoạt môi trường vừa tạo:
+Kích hoạt môi trường:
 - **Windows**: `.\venv\Scripts\activate`
 - **Mac/Linux**: `source venv/bin/activate`
 
-Tiếp theo, hãy cài đặt toàn bộ "vũ khí" cần thiết bằng lệnh:
+Cài đặt vũ khí (Dependencies):
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Cấu Hình Sức Mạnh (API Keys)
-Chìa khóa để bật bộ não AI và hệ thống quét là file `.env`. Nhân bản (copy) nội dung tệp `.env.example` ở dự án ra thành tự tạo mới tên `.env` ngay trong thư mục gốc (ngang hàng README.md) và dán thông tin của bạn vào:
+### 2. Cấu Hình Khởi Động (Trái Tim Của Hệ Thống)
+Bạn cần API Key để chương trình biết nó đang phục vụ ai.
+1. Copy file `.env.example` thành `.env`.
+2. Mở file `.env` lên và điền KEY của bạn vào. 
+> *Bí kíp: Dự án chấp nhận cả khóa truyền thống của Google Maps API hoặc khóa API Gemini AI dán vào.*
 
-```env
-# 1. API Key của Google (Google Maps / Places API)
-API_KEY=AIzaSy_CUA_BAN_O_DAY
+## 🚀 Thao Tác Chạy Lệnh
 
-# 2. Endpoint của Google Places Text Search (Hoặc API tương tự bạn muốn dùng)
-API_ENDPOINT=https://maps.googleapis.com/maps/api/place/textsearch/json
-```
+Sử dụng cú pháp thần thánh sau để khai phá Data ở bất kỳ vị trí địa lý nào:
 
-### 3. Vận Hành Tác Chiến
-Chúng tôi đã setup sẵn hệ thống CLI mạnh mẽ để bạn có thể sử dụng sức mạnh Agent tùy theo nhu cầu:
-
-#### a. Quét Mẫu Dữ Liệu Live (Khai phá Leads Mới)
-File này sẽ kéo dữ liệu của các doanh nghiệp kinh doanh tại thời điểm thực theo khu vực bạn chọn và xuất ra thành tệp Excel (CSV) sau khi AI đã phân tích "Nhãn chất lượng".
+**Xuất ra file CSV (Mặc định):**
 ```bash
-python main.py --keyword "nhà cung cấp phần mềm" --province "TP.HCM" --max 100 --output csv
+python main.py --keyword "công nghệ phần mềm" --province "Hà Nội" --max 50
 ```
 
-#### b. Quét Export JSON để Đẩy Vào Database (CRM Integration)
-Chế độ này xuất dữ liệu JSON chuẩn hóa, bạn có thể dễ dàng map cấu trúc để import thẳng vào Zoho CRM, Hubspot hoặc Database đội Dev, tiết kiệm tối đa rủi ro nhập tay.
+**Xuất ra Excel (XLSX) cho dân Sales/Marketing:**
 ```bash
-python main.py --keyword "nhà hàng cao cấp" --province "Hà Nội" --max 200 --output json
+python main.py --keyword "spa thẩm mỹ" --province "Đà Nẵng" --max 100 --output excel
 ```
 
-## 🔌 Tích Hợp Zoho CRM (Có Sẵn Mẫu)
-Trong `main.py` đã có sẵn placeholder comment dành cho việc đút thẳng danh sách cào được vào Zoho CRM. Bạn chỉ việc thêm token OAuth vào và mở comment.
+**Xuất ra định dạng JSON cho dân Coder nhúng API:**
+```bash
+python main.py --keyword "bất động sản" --province "TP.HCM" --max 20 --output json
+```
 
-## 💡 Lời Kêu Gọi Cộng Đồng
-Đây là dự án mở 100% dành cho người Việt. Chúng ta rất cần sự ủng hộ của các bạn:
-- Hãy bấm **⭐ Star** repo này!
-- Có ý tưởng hay? Hãy mở **Issue**!
-- Thích code? Gửi **Pull Request (PR)**!
+---
 
-*Vì một cộng đồng Builder Việt vững mạnh.*
+## 🧠 Chưng Cất Kiến Thức (Góc độ Kiến trúc - TinySDLC)
+
+Hệ thống được thiết kế theo nguyên lý **Modular** (Module hóa tách biệt hoàn toàn):
+- `scraper.py`: Nhọc nhằn việc gọi Data thô, tích hợp Auto-Fallback LLM (Gemini 2.5 Flash).
+- `processor.py`: Trạm xử lý Pandas (DataFrame) siêu sạch, gọt dũa những dữ liệu bẩn và loại trùng lặp.
+- `ai_classifier.py`: Trái tim AI Zero-shot Model (Multilingual-MiniLMv2-L6) tải thẳng vào RAM máy bạn, hiểu liền Tiếng Anh/Tiếng Việt mà không cần Train rườm rà. Nó thay bạn trả lời câu hỏi *"Lead này có giàu không?"*
+
+---
+
+## 🤝 Giấy Phép (License)
+Toàn bộ mã nguồn mở 100% tuân thủ **MIT License**. Bạn có quyền tải về, xào nấu, kiếm tiền, và đập đi xây lại tùy thích!
+Hãy cho dự án **1 🌟 Star** nếu nó giúp ích được cho công việc của bạn nhé!
+
+---
+*Phát triển bởi Quanghoaai - Cộng đồng Python Việt Nam.*
