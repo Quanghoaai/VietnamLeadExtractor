@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Công ty Phần mềm A",
+        "address": "123 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà Nội",
+        "phone": "0981234567",
+        "website": "https://phanmem.vn",
+        "rating": 4.9,
+        "reviewCount": 250,
+        "category": "Software company",
+        "lat": 21.02,
+        "lng": 105.8,
+        "lead_quality": "High"
+    },
+    {
+        "title": "Nhà máy cơ khí B",
+        "address": "Khu công nghiệp Bắc Thăng Long, Đông Anh, Hà Nội",
+        "phone": "043123456",
+        "website": "http://cokhib.com",
+        "rating": 2.1,
+        "reviewCount": 10,
+        "category": "Manufacturing",
+        "lat": 21.15,
+        "lng": 105.78,
+        "lead_quality": "Low"
+    },
+    {
+        "title": "Startup CN TNHH C",
+        "address": "Landmark 72, Phạm Hùng, Hà Nội",
+        "phone": "0912223334",
+        "website": "",
+        "rating": 4.0,
+        "reviewCount": 2,
+        "category": "IT Consultant",
+        "lat": 21.01,
+        "lng": 105.78,
+        "lead_quality": "Medium"
+    }
+]

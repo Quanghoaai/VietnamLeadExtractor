@@ -1,0 +1,4 @@
+title,address,phone,website,rating,reviewCount,category,lat,lng,lead_quality
+"Công ty Phần mềm A","123 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà Nội","0981234567","https://phanmem.vn",4.9,250,"Software company",21.02,105.8,"High"
+"Nhà máy cơ khí B","Khu công nghiệp Bắc Thăng Long, Đông Anh, Hà Nội","043123456","http://cokhib.com",2.1,10,"Manufacturing",21.15,105.78,"Low"
+"Startup CN TNHH C","Landmark 72, Phạm Hùng, Hà Nội","0912223334","",4.0,2,"IT Consultant",21.01,105.78,"Medium"

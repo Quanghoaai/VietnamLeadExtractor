@@ -1,0 +1,33 @@
+name: Weekly Lead Extraction
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Tự động chạy hàng tuần vào 0h mỗi Chủ Nhật
+  workflow_dispatch: # Cho phép trigger chạy thủ công qua giao diện Github
+
+jobs:
+  scrape-and-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Lựa chọn & Cài đặt môi trường Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Scraper Action (Báo cáo tự động)
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          python main.py --keyword "nhà cung cấp" --max 100 --province "Hà Nội" --output csv
+
+      - name: Upload results to GitHub Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: weekly-lead-results
+          path: "*.csv"
