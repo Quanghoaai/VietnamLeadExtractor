@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Lựa chọn & Cài đặt môi trường Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -27,7 +27,8 @@ jobs:
           python main.py --keyword "nhà cung cấp" --max 100 --province "Hà Nội" --output csv
 
       - name: Upload results to GitHub Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: weekly-lead-results
           path: "*.csv"
+          if-no-files-found: warn
